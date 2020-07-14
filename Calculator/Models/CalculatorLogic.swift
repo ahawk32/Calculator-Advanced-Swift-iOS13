@@ -8,23 +8,25 @@
 
 import Foundation
 
+
 class CalculatorLogic {
     
-    let cont = ViewController()
     
    
-    func calculate(sender: String?){
+    func calculate(sender: String?, screenText: Double) -> Double {
         
         if let calcMethod = sender {
             if calcMethod == "+/-" {
-                cont.displayValue = cont.displayValue * -1
+               return screenText * -1
             }
             else if calcMethod == "AC" {
-                cont.displayValue = Double("0")!
+                return Double("0")!
             }
             else if calcMethod == "%" {
-                cont.displayValue *= 0.01            }
+                return 0.01 * screenText           }
+           
         }
+        return 0.0
         
         
     }

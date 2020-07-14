@@ -6,6 +6,7 @@
 //  Copyright © 2019 London App Brewery. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class ViewController: UIViewController {
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
 
-        calcLogic.calculate(sender: sender.currentTitle)
+       displayValue = calcLogic.calculate(sender: sender.currentTitle,screenText: displayValue)
             
 //        if let calcMethod = sender.currentTitle {
 //            if calcMethod == "+/-" {
