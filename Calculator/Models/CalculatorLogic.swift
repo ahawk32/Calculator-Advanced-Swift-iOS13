@@ -13,7 +13,7 @@ struct CalculatorLogic {
     
     private var number: Double?
     
-    private var intermediateCalculation: (n1: Double, calcMethod: String)?
+    var intermediateCalculation: (n1: Double, calcMethod: String)?
     
     mutating func setNumber(_ number: Double){
         self.number = number
@@ -32,22 +32,14 @@ struct CalculatorLogic {
             else if symbol == "%" {
                 return 0.01 * n
                 
-            } else if symbol == "+" {
-                if let rNum = number {
-                    intermediateCalculation?.num = rNum
-                    print(intermediateCalculation?.num ?? "not it")
-                    print("cash")
-                    return rNum
-                }
-                print("no cash")
-                return number!
-                
-                
-                
             } else if symbol == "=" {
-                let result = (intermediateCalculation?.num ?? 4.0) + (number ?? 2.0)
-                return result
                 
+                return performTwoNumCalculation(n2: n)
+               
+            }
+            else  {
+                intermediateCalculation = (n1: n, calcMethod: symbol)
+                return n
             }
             
         }
@@ -56,8 +48,25 @@ struct CalculatorLogic {
         
     }
     
+    private func performTwoNumCalculation(n2: Double) -> Double? {
+        
+        if let n1 = intermediateCalculation?.n1, let operation = intermediateCalculation?.calcMethod {
+            
+            switch operation {
+            case "+": return n1 + n2
+            case "-": return n1 - n2
+            case "×": return n1 * n2
+            case "÷": return n1/n2
+            default:
+                fatalError("The operation passed does not meet the cases")
+            }
+    }
     
-   
-    
-    
+    return nil
+}
+
+
+
+
+
 }
